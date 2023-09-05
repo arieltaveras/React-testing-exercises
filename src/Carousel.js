@@ -22,8 +22,12 @@ import Card from "./Card";
 
   //Increments currCardIdx state by 1
   function goForward() {
-    setCurrCardIdx(currCardIdx + 1);
+    setCurrCardIdx((currCardIdx + 1) % total);
   }
+  function goBackward() {
+    setCurrCardIdx((currCardIdx + total - 1) % total);
+  }
+
 
   return (
     <div className="Carousel">
@@ -31,12 +35,12 @@ import Card from "./Card";
       <div className="Carousel-main">
         <i
           className="bi bi-arrow-left-circle"
-          onClick={goForward}
+          onClick={goBackward}
         />
         <Card
           caption={currCard.caption}
           src={currCard.src}
-          currNum={currCardIdx + 1}
+          currNum={currCardIdx +1}
           totalNum={total}
         />
         <i
